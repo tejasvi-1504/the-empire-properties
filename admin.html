@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin · The Empire Properties</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@600;700;800&family=Tangerine:wght@700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ---- admin-only styles ---- */
+    body{padding:0}
+    .adm-wrap{max-width:1180px;margin:0 auto;padding:2rem clamp(1rem,4vw,2.4rem) 4rem}
+    .adm-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+      padding:1.4rem 0;border-bottom:1px solid var(--line);margin-bottom:2rem}
+    .adm-top .brand small{color:var(--gold)}
+    .adm-tag{font-family:var(--sans);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;
+      color:var(--ink);background:linear-gradient(135deg,var(--gold-lite),var(--gold-deep));
+      padding:.4rem .9rem;border-radius:30px;font-weight:600}
+    /* login gate */
+    .gate{min-height:100vh;display:grid;place-items:center;padding:1.4rem}
+    .gate__card{max-width:420px;width:100%;border:1px solid var(--gold);border-radius:calc(var(--radius)+4px);
+      padding:clamp(2rem,5vw,3rem);background:var(--ink-2);box-shadow:var(--shadow);text-align:center}
+    .gate__card .preloader__mono{position:relative;animation:none}
+    .gate h1{font-family:var(--display);font-size:1.9rem;margin:1rem 0 .3rem}
+    .gate p{color:var(--cream-dim);margin-bottom:1.6rem;font-size:1rem}
+    .gate .field{text-align:left}
+    .hint{font-family:var(--sans);font-size:.68rem;color:var(--cream-dim);margin-top:1rem;letter-spacing:.04em}
+    .hint code{color:var(--gold-lite)}
+    /* stats */
+    .adm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.4rem}
+    .stat{border:1px solid var(--line);border-radius:var(--radius);padding:1.3rem 1.4rem;background:linear-gradient(160deg,rgba(255,255,255,.03),transparent)}
+    .stat b{font-family:var(--display);font-size:2rem;color:var(--gold-lite);display:block}
+    .stat span{font-family:var(--sans);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim)}
+    /* layout */
+    .adm-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:1.8rem;align-items:start}
+    .panel{border:1px solid var(--line);border-radius:calc(var(--radius)+4px);background:var(--ink-2);padding:1.7rem}
+    .panel h2{font-family:var(--display);font-size:1.5rem;margin-bottom:1.2rem;color:var(--cream)}
+    .panel h2 .cursive{font-size:1.3em}
+    /* list */
+    .row{display:flex;gap:1rem;align-items:center;padding:.8rem;border:1px solid var(--line);border-radius:14px;margin-bottom:.8rem;transition:.3s}
+    .row:hover{border-color:var(--gold)}
+    .row img{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:none}
+    .row__info{flex:1;min-width:0}
+    .row__info b{font-family:var(--display);font-size:1.1rem;color:var(--cream);display:block;line-height:1.2}
+    .row__info span{font-family:var(--sans);font-size:.72rem;color:var(--cream-dim);letter-spacing:.04em}
+    .row__price{font-family:var(--display);color:var(--gold-lite);font-size:1.05rem;white-space:nowrap}
+    .row__acts{display:flex;gap:.4rem;flex-wrap:wrap}
+    .mini{font-family:var(--sans);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+      border:1px solid var(--line);background:none;color:var(--cream-dim);border-radius:30px;
+      padding:.4rem .8rem;cursor:pointer;transition:.3s}
+    .mini:hover{border-color:var(--gold);color:var(--gold-lite)}
+    .mini.sold{border-color:#7a1f2b;color:#e3a6ad}
+    .mini.sold.on{background:#7a1f2b;color:var(--cream)}
+    .mini.del:hover{border-color:#7a1f2b;color:#e3a6ad}
+    .badge-sold{font-family:var(--sans);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+      color:#e3a6ad;border:1px solid #7a1f2b;border-radius:20px;padding:.15rem .5rem;margin-left:.4rem}
+    @media(max-width:880px){.adm-grid{grid-template-columns:1fr}.adm-stats{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.row{flex-wrap:wrap}.row__price{order:3}}
+  </style>
+</head>
+<body>
+
+  <!-- ============ LOGIN GATE ============ -->
+  <div class="gate" id="gate">
+    <div class="gate__card">
+      <div class="preloader__mono" style="margin:0 auto">TE</div>
+      <h1>Empire <span class="cursive" style="color:var(--gold-lite)">Console</span></h1>
+      <p>Sign in to manage the portfolio.</p>
+      <form id="loginForm">
+        <label class="field">
+          <span>Password</span>
+          <input type="password" id="pw" placeholder="Enter admin password" autocomplete="current-password" />
+        </label>
+        <button class="btn btn--gold" style="width:100%" type="submit">Enter Console</button>
+      </form>
+      <p class="hint">Demo password: <code>empire@2026</code></p>
+    </div>
+  </div>
+
+  <!-- ============ DASHBOARD ============ -->
+  <main class="adm-wrap" id="dash" hidden>
+    <div class="adm-top">
+      <a href="index.html" class="brand">
+        <span class="brand__mono">TE</span>
+        <span class="brand__txt"><strong>The Empire</strong><small>A D M I N &nbsp; C O N S O L E</small></span>
+      </a>
+      <div style="display:flex;gap:.7rem;align-items:center">
+        <span class="adm-tag">Live</span>
+        <a href="index.html" class="mini" target="_blank">View Site ↗</a>
+        <button class="mini" id="resetBtn">Reset Demo</button>
+        <button class="mini" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+
+    <div class="adm-stats" id="stats"></div>
+
+    <div class="adm-grid">
+      <!-- form -->
+      <section class="panel">
+        <h2 id="formTitle">Add a <span class="cursive">Property</span></h2>
+        <form id="propForm">
+          <input type="hidden" id="editId" />
+          <label class="field"><span>Title</span>
+            <input type="text" id="f_title" required placeholder="e.g. Imperial Corner Plot" /></label>
+
+          <div class="form__row">
+            <label class="field"><span>Type</span>
+              <select id="f_type"><option>Plot</option><option>Apartment</option><option>Duplex</option></select></label>
+            <label class="field"><span>Deal</span>
+              <select id="f_deal"><option>For Sale</option><option>For Rent</option><option>Investment</option><option>For Purchase</option></select></label>
+          </div>
+
+          <label class="field"><span>Location</span>
+            <input type="text" id="f_location" required placeholder="e.g. Shatabdi Nagar, Meerut" /></label>
+
+          <div class="form__row">
+            <label class="field"><span>Price</span>
+              <input type="text" id="f_price" required placeholder="e.g. ₹62 Lakh" /></label>
+            <label class="field"><span>Area</span>
+              <input type="text" id="f_area" placeholder="e.g. 200 sq. yd" /></label>
+          </div>
+
+          <div class="form__row">
+            <label class="field"><span>Config (beds)</span>
+              <input type="text" id="f_beds" placeholder="e.g. 3 BHK or —" /></label>
+            <label class="field"><span>Baths</span>
+              <input type="text" id="f_baths" placeholder="e.g. 2 Bath or —" /></label>
+          </div>
+
+          <div class="form__row">
+            <label class="field"><span>Facing</span>
+              <input type="text" id="f_facing" placeholder="e.g. East" /></label>
+            <label class="field"><span>Image URL</span>
+              <input type="url" id="f_image" placeholder="https://…" /></label>
+          </div>
+
+          <label class="field"><span>Description</span>
+            <textarea id="f_desc" rows="3" placeholder="Short, persuasive description…"></textarea></label>
+
+          <label class="field" style="flex-direction:row;align-items:center;gap:.6rem">
+            <input type="checkbox" id="f_sold" style="width:auto" />
+            <span style="margin:0">Mark as Sold Out</span>
+          </label>
+
+          <div style="display:flex;gap:.7rem;margin-top:.4rem">
+            <button class="btn btn--gold" type="submit" id="saveBtn" style="flex:1">Add Property</button>
+            <button class="btn btn--ghost" type="button" id="cancelEdit" hidden>Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- list -->
+      <section class="panel">
+        <h2>Current <span class="cursive">Portfolio</span></h2>
+        <div id="admList"></div>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
