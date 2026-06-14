@@ -42,6 +42,10 @@ python -m http.server 5500
 - **Instagram reels strip** linking to `@the_empireproperties`.
 - **Admin dashboard** (`admin.html`) — password-gated, add / edit / delete listings,
   toggle **Sold Out**, live stats. Changes sync to the public site instantly.
+- **Switchable luxury themes** — pick from 6 royal palettes in the admin console
+  (Emerald Royale, Sapphire Majesty, Burgundy Imperial, Onyx & Rose Gold,
+  Royal Amethyst, Midnight Teal & Bronze). The choice instantly re-colours the
+  entire public website and persists across visits.
 - **SEO**: title/description/keywords, Open Graph + Twitter cards, canonical, geo tags,
   JSON-LD `RealEstateAgent` schema, semantic HTML, `robots.txt`, `sitemap.xml`, lazy images.
 - **Tracking points**: Google Analytics 4 + Meta Pixel snippets with a `trackEvent()`

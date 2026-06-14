@@ -73,7 +73,29 @@
       </div>`).join('');
   }
 
-  function renderAll() { renderStats(); renderList(); }
+  /* ---------- theme picker ---------- */
+  function renderThemes() {
+    const grid = $('#themeGrid');
+    if (!grid) return;
+    const active = window.EMPIRE.getTheme();
+    grid.innerHTML = window.EMPIRE.THEMES.map(t => `
+      <button class="theme-card ${t.id === active ? 'active' : ''}" data-theme-id="${t.id}">
+        <span class="theme-sw">
+          <i style="background:${t.sw[0]}"></i><i style="background:${t.sw[1]}"></i><i style="background:${t.sw[2]}"></i>
+        </span>
+        <span class="theme-card__body"><b>${t.name}</b><span>${t.note}</span></span>
+      </button>`).join('');
+  }
+  $('#themeGrid').addEventListener('click', (e) => {
+    const c = e.target.closest('[data-theme-id]'); if (!c) return;
+    const id = c.dataset.themeId;
+    window.EMPIRE.setTheme(id);                 // saves + applies to admin instantly
+    renderThemes();
+    const t = window.EMPIRE.THEMES.find(x => x.id === id);
+    toast(`Theme set to “${t ? t.name : id}”. Live on the website.`);
+  });
+
+  function renderAll() { renderStats(); renderList(); renderThemes(); }
 
   /* ---------- form (add / edit) ---------- */
   const form = $('#propForm');

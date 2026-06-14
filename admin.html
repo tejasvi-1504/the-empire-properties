@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@600;700;800&family=Tangerine:wght@700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+  <!-- apply saved royal theme before paint (no flash) -->
+  <script>try{var t=localStorage.getItem('empire_theme_v1');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
   <style>
     /* ---- admin-only styles ---- */
     body{padding:0}
@@ -57,8 +59,25 @@
     .mini.del:hover{border-color:#7a1f2b;color:#e3a6ad}
     .badge-sold{font-family:var(--sans);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
       color:#e3a6ad;border:1px solid #7a1f2b;border-radius:20px;padding:.15rem .5rem;margin-left:.4rem}
-    @media(max-width:880px){.adm-grid{grid-template-columns:1fr}.adm-stats{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:560px){.row{flex-wrap:wrap}.row__price{order:3}}
+    /* theme picker */
+    .theme-panel{margin-bottom:1.8rem}
+    .theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .theme-card{
+      border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;
+      background:var(--ink);transition:.35s;text-align:left;padding:0;position:relative}
+    .theme-card:hover{transform:translateY(-4px);border-color:var(--gold)}
+    .theme-card.active{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold) inset}
+    .theme-card.active:after{content:"✓ Active";position:absolute;top:10px;right:10px;
+      font-family:var(--sans);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+      background:linear-gradient(135deg,var(--gold-lite),var(--gold-deep));color:#1a130a;
+      padding:.25rem .6rem;border-radius:20px;font-weight:600}
+    .theme-sw{display:flex;height:62px}
+    .theme-sw i{flex:1;display:block}
+    .theme-card__body{padding:.9rem 1rem 1rem}
+    .theme-card__body b{font-family:var(--display);font-size:1.1rem;color:var(--cream);display:block;line-height:1.2}
+    .theme-card__body span{font-family:var(--sans);font-size:.68rem;letter-spacing:.04em;color:var(--cream-dim)}
+    @media(max-width:880px){.adm-grid{grid-template-columns:1fr}.adm-stats{grid-template-columns:repeat(2,1fr)}.theme-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.row{flex-wrap:wrap}.row__price{order:3}.theme-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -96,6 +115,14 @@
     </div>
 
     <div class="adm-stats" id="stats"></div>
+
+    <!-- ===== Website Theme ===== -->
+    <section class="panel theme-panel">
+      <h2>Website <span class="cursive">Theme</span></h2>
+      <p style="color:var(--cream-dim);font-size:.95rem;margin:-.6rem 0 1.2rem">
+        Choose a luxurious royal palette — it instantly re-colours the entire public website.</p>
+      <div class="theme-grid" id="themeGrid"></div>
+    </section>
 
     <div class="adm-grid">
       <!-- form -->

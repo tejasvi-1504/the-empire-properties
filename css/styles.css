@@ -21,6 +21,54 @@
   --sans:"Jost",system-ui,sans-serif;
 }
 
+/* ============================================================
+   LUXURY ROYAL THEMES  (switchable from the Admin console)
+   Each palette overrides the gradient + accent variables so the
+   entire website re-colours instantly. Default = Emerald Royale.
+   ============================================================ */
+
+/* 1 · Emerald Royale (default — also explicit) */
+html[data-theme="emerald"]{
+  --ink:#0c1512;--ink-2:#0f1c18;--emerald:#123127;--emerald-deep:#0b211a;
+  --gold:#c9a24b;--gold-lite:#e8cf8c;--gold-deep:#9c7b2e;
+  --cream:#f4efe3;--cream-dim:#cdc6b6;--line:rgba(201,162,75,.22);
+}
+
+/* 2 · Sapphire Majesty — royal navy & gold */
+html[data-theme="sapphire"]{
+  --ink:#0a0f1c;--ink-2:#0e1428;--emerald:#16224a;--emerald-deep:#0a1230;
+  --gold:#d4af37;--gold-lite:#f0d98a;--gold-deep:#a07d2c;
+  --cream:#f2f1ec;--cream-dim:#bcc2d4;--line:rgba(212,175,55,.24);
+}
+
+/* 3 · Burgundy Imperial — deep wine & champagne */
+html[data-theme="burgundy"]{
+  --ink:#15090c;--ink-2:#1e0d12;--emerald:#3d1420;--emerald-deep:#2a0c14;
+  --gold:#d9b36b;--gold-lite:#f3dca6;--gold-deep:#a87f3e;
+  --cream:#f5ece2;--cream-dim:#d6bdb1;--line:rgba(217,179,107,.26);
+}
+
+/* 4 · Onyx & Rose Gold — charcoal & blush copper */
+html[data-theme="rosegold"]{
+  --ink:#0e0d0d;--ink-2:#171313;--emerald:#2a201d;--emerald-deep:#1a1413;
+  --gold:#cf9277;--gold-lite:#eec1aa;--gold-deep:#a06848;
+  --cream:#f4efe9;--cream-dim:#cdbfb8;--line:rgba(207,146,119,.26);
+}
+
+/* 5 · Royal Amethyst — deep plum & gold */
+html[data-theme="amethyst"]{
+  --ink:#0f0a17;--ink-2:#160f22;--emerald:#2a1a42;--emerald-deep:#1c1130;
+  --gold:#cda84b;--gold-lite:#ecd28a;--gold-deep:#9a7a30;
+  --cream:#f1ecf5;--cream-dim:#c6bcd4;--line:rgba(205,168,75,.24);
+}
+
+/* 6 · Midnight Teal & Bronze — peacock teal & antique bronze */
+html[data-theme="bronze"]{
+  --ink:#061311;--ink-2:#0a1a18;--emerald:#0c3330;--emerald-deep:#072523;
+  --gold:#c08a4e;--gold-lite:#e6b985;--gold-deep:#8f6334;
+  --cream:#eef2ef;--cream-dim:#b6c4c0;--line:rgba(192,138,78,.26);
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
