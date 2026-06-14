@@ -12,16 +12,18 @@ window.EMPIRE = (function () {
   // ---- luxury royal themes (selectable from Admin) ----------
   // sw = [background, mid, accent] swatch preview colours
   const THEMES = [
-    { id: 'emerald',  name: 'Emerald Royale',          note: 'Emerald ink & antique gold', sw: ['#0c1512', '#123127', '#c9a24b'] },
-    { id: 'sapphire', name: 'Sapphire Majesty',        note: 'Royal navy & gold',          sw: ['#0a0f1c', '#16224a', '#d4af37'] },
-    { id: 'burgundy', name: 'Burgundy Imperial',       note: 'Deep wine & champagne',      sw: ['#15090c', '#3d1420', '#d9b36b'] },
-    { id: 'rosegold', name: 'Onyx & Rose Gold',        note: 'Charcoal & blush copper',    sw: ['#0e0d0d', '#2a201d', '#cf9277'] },
-    { id: 'amethyst', name: 'Royal Amethyst',          note: 'Deep plum & gold',           sw: ['#0f0a17', '#2a1a42', '#cda84b'] },
-    { id: 'bronze',   name: 'Midnight Teal & Bronze',  note: 'Peacock teal & bronze',      sw: ['#061311', '#0c3330', '#c08a4e'] }
+    { id: 'emerald',  name: 'Emerald Royale',    tone: 'Dark',  note: 'Emerald & antique gold',   sw: ['#0c1512', '#123127', '#c9a24b'] },
+    { id: 'ivory',    name: 'Ivory & Gold',      tone: 'Light', note: 'Marble ivory & rich gold', sw: ['#f1ead9', '#e8dcc1', '#b8902f'] },
+    { id: 'sapphire', name: 'Sapphire Majesty',  tone: 'Dark',  note: 'Royal navy & gold',        sw: ['#0a0f1c', '#16224a', '#d4af37'] },
+    { id: 'burgundy', name: 'Burgundy Imperial', tone: 'Dark',  note: 'Deep wine & champagne',    sw: ['#15090c', '#3d1420', '#d9b36b'] },
+    { id: 'pearl',    name: 'Pearl & Platinum',  tone: 'Light', note: 'Cool pearl & platinum',    sw: ['#eceef2', '#dde1ea', '#7d8597'] }
   ];
 
   function getTheme() {
-    try { return localStorage.getItem(THEME_KEY) || 'emerald'; } catch (e) { return 'emerald'; }
+    try {
+      const id = localStorage.getItem(THEME_KEY) || 'emerald';
+      return THEMES.some(t => t.id === id) ? id : 'emerald';   // ignore removed themes
+    } catch (e) { return 'emerald'; }
   }
   function applyTheme(id) {
     document.documentElement.setAttribute('data-theme', id || 'emerald');

@@ -83,7 +83,10 @@
         <span class="theme-sw">
           <i style="background:${t.sw[0]}"></i><i style="background:${t.sw[1]}"></i><i style="background:${t.sw[2]}"></i>
         </span>
-        <span class="theme-card__body"><b>${t.name}</b><span>${t.note}</span></span>
+        <span class="theme-card__body">
+          <b>${t.name} <em class="tone tone--${t.tone.toLowerCase()}">${t.tone}</em></b>
+          <span>${t.note}</span>
+        </span>
       </button>`).join('');
   }
   $('#themeGrid').addEventListener('click', (e) => {

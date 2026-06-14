@@ -19,6 +19,13 @@
   --display:"Playfair Display",Georgia,serif;
   --cursive:"Tangerine",cursive;
   --sans:"Jost",system-ui,sans-serif;
+  /* constant: text colour that sits ON gold/accent fills (stays dark) */
+  --on-gold:#1a130a;
+  /* themeable overlays (hero veil + nav glass) — emerald defaults */
+  --veil-1:rgba(8,14,11,.30);
+  --veil-2:rgba(8,14,11,.86);
+  --glass:rgba(10,16,13,.86);
+  --glass-solid:rgba(9,15,12,.97);
 }
 
 /* ============================================================
@@ -27,46 +34,51 @@
    entire website re-colours instantly. Default = Emerald Royale.
    ============================================================ */
 
-/* 1 · Emerald Royale (default — also explicit) */
+/* ----- 1 · EMERALD ROYALE  (dark · emerald & antique gold) ----- */
 html[data-theme="emerald"]{
   --ink:#0c1512;--ink-2:#0f1c18;--emerald:#123127;--emerald-deep:#0b211a;
   --gold:#c9a24b;--gold-lite:#e8cf8c;--gold-deep:#9c7b2e;
   --cream:#f4efe3;--cream-dim:#cdc6b6;--line:rgba(201,162,75,.22);
+  --veil-1:rgba(8,14,11,.30);--veil-2:rgba(8,14,11,.86);
+  --glass:rgba(10,16,13,.86);--glass-solid:rgba(9,15,12,.97);
 }
 
-/* 2 · Sapphire Majesty — royal navy & gold */
+/* ----- 2 · IVORY & GOLD  (LIGHT · warm marble ivory & rich gold) ----- */
+html[data-theme="ivory"]{
+  --ink:#f1ead9;--ink-2:#fbf6ec;--emerald:#e8dcc1;--emerald-deep:#efe7d4;
+  --gold:#b8902f;--gold-lite:#9c7522;--gold-deep:#7d5d1a;
+  --cream:#2c2418;--cream-dim:#6f6451;--line:rgba(160,120,40,.32);
+  --shadow:0 30px 70px -34px rgba(90,70,20,.45);
+  --veil-1:rgba(244,238,224,.55);--veil-2:rgba(244,238,224,.92);
+  --glass:rgba(249,244,233,.88);--glass-solid:rgba(249,244,233,.98);
+}
+
+/* ----- 3 · SAPPHIRE MAJESTY  (dark · royal navy & gold) ----- */
 html[data-theme="sapphire"]{
   --ink:#0a0f1c;--ink-2:#0e1428;--emerald:#16224a;--emerald-deep:#0a1230;
   --gold:#d4af37;--gold-lite:#f0d98a;--gold-deep:#a07d2c;
   --cream:#f2f1ec;--cream-dim:#bcc2d4;--line:rgba(212,175,55,.24);
+  --veil-1:rgba(7,11,24,.34);--veil-2:rgba(7,11,24,.88);
+  --glass:rgba(9,13,30,.86);--glass-solid:rgba(8,11,26,.97);
 }
 
-/* 3 · Burgundy Imperial — deep wine & champagne */
+/* ----- 4 · BURGUNDY IMPERIAL  (dark · deep wine & champagne) ----- */
 html[data-theme="burgundy"]{
   --ink:#15090c;--ink-2:#1e0d12;--emerald:#3d1420;--emerald-deep:#2a0c14;
   --gold:#d9b36b;--gold-lite:#f3dca6;--gold-deep:#a87f3e;
   --cream:#f5ece2;--cream-dim:#d6bdb1;--line:rgba(217,179,107,.26);
+  --veil-1:rgba(16,7,10,.34);--veil-2:rgba(16,7,10,.88);
+  --glass:rgba(20,9,13,.86);--glass-solid:rgba(16,8,11,.97);
 }
 
-/* 4 · Onyx & Rose Gold — charcoal & blush copper */
-html[data-theme="rosegold"]{
-  --ink:#0e0d0d;--ink-2:#171313;--emerald:#2a201d;--emerald-deep:#1a1413;
-  --gold:#cf9277;--gold-lite:#eec1aa;--gold-deep:#a06848;
-  --cream:#f4efe9;--cream-dim:#cdbfb8;--line:rgba(207,146,119,.26);
-}
-
-/* 5 · Royal Amethyst — deep plum & gold */
-html[data-theme="amethyst"]{
-  --ink:#0f0a17;--ink-2:#160f22;--emerald:#2a1a42;--emerald-deep:#1c1130;
-  --gold:#cda84b;--gold-lite:#ecd28a;--gold-deep:#9a7a30;
-  --cream:#f1ecf5;--cream-dim:#c6bcd4;--line:rgba(205,168,75,.24);
-}
-
-/* 6 · Midnight Teal & Bronze — peacock teal & antique bronze */
-html[data-theme="bronze"]{
-  --ink:#061311;--ink-2:#0a1a18;--emerald:#0c3330;--emerald-deep:#072523;
-  --gold:#c08a4e;--gold-lite:#e6b985;--gold-deep:#8f6334;
-  --cream:#eef2ef;--cream-dim:#b6c4c0;--line:rgba(192,138,78,.26);
+/* ----- 5 · PEARL & PLATINUM  (LIGHT · cool pearl & steel platinum) ----- */
+html[data-theme="pearl"]{
+  --ink:#eceef2;--ink-2:#f7f8fb;--emerald:#dde1ea;--emerald-deep:#e7eaf1;
+  --gold:#7d8597;--gold-lite:#5f6878;--gold-deep:#474e5c;
+  --cream:#23272f;--cream-dim:#5c6470;--line:rgba(90,100,120,.30);
+  --shadow:0 30px 70px -34px rgba(40,50,70,.4);
+  --veil-1:rgba(236,238,242,.55);--veil-2:rgba(236,238,242,.92);
+  --glass:rgba(244,246,249,.9);--glass-solid:rgba(244,246,249,.98);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -85,7 +97,7 @@ a{color:inherit;text-decoration:none}
 section{position:relative}
 
 /* selection */
-::selection{background:var(--gold);color:var(--ink)}
+::selection{background:var(--gold);color:var(--on-gold)}
 
 /* ---------- shared type ---------- */
 .display{
@@ -205,7 +217,7 @@ section{position:relative}
   transition:.45s ease;
 }
 .nav.scrolled{
-  background:rgba(10,18,15,.86);
+  background:var(--glass);
   backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);
   top:0;
@@ -235,7 +247,7 @@ section{position:relative}
   padding:.55rem 1.4rem !important;border-radius:40px;
   transition:.35s;
 }
-.nav__cta:hover{background:var(--gold);color:var(--ink)}
+.nav__cta:hover{background:var(--gold);color:var(--on-gold)}
 .nav__burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
 .nav__burger span{width:26px;height:2px;background:var(--gold-lite);transition:.35s}
 
@@ -248,8 +260,8 @@ section{position:relative}
 .hero__veil{
   position:absolute;inset:0;
   background:
-    radial-gradient(120% 80% at 50% 18%,rgba(12,21,18,.25),rgba(8,15,12,.9) 78%),
-    linear-gradient(to bottom,rgba(8,14,11,.55),rgba(8,14,11,.78));
+    radial-gradient(120% 80% at 50% 18%,var(--veil-1),var(--veil-2) 80%),
+    linear-gradient(to bottom,var(--veil-1),var(--veil-2));
 }
 .hero__frame{
   position:absolute;inset:clamp(14px,2.4vw,34px);z-index:1;pointer-events:none;
@@ -341,7 +353,7 @@ section{position:relative}
   padding:.65rem 1.5rem;border-radius:40px;border:1px solid var(--line);
   background:transparent;color:var(--cream-dim);cursor:pointer;transition:.35s;
 }
-.chip.is-active,.chip:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.chip.is-active,.chip:hover{background:var(--gold);color:var(--on-gold);border-color:var(--gold)}
 .grid{
   display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;
   max-width:1200px;margin:0 auto;
@@ -394,7 +406,7 @@ section{position:relative}
   color:var(--gold-lite);border:1px solid var(--line);border-radius:30px;padding:.55rem 1.1rem;
   cursor:pointer;background:none;transition:.35s;
 }
-.card__btn:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.card__btn:hover{background:var(--gold);color:var(--on-gold);border-color:var(--gold)}
 
 /* ============================================================
    ABOUT
@@ -434,7 +446,7 @@ section{position:relative}
   background:linear-gradient(to top,rgba(8,14,11,.7),transparent 60%);
 }
 .reel__play b{
-  width:52px;height:52px;border-radius:50%;background:rgba(201,162,75,.92);color:var(--ink);
+  width:52px;height:52px;border-radius:50%;background:rgba(201,162,75,.92);color:var(--on-gold);
   display:grid;place-items:center;font-size:1.1rem;padding-left:3px;
 }
 .reel__cap{position:absolute;left:12px;bottom:12px;right:12px;font-family:var(--sans);font-size:.72rem;color:var(--cream);letter-spacing:.04em}
@@ -451,7 +463,7 @@ section{position:relative}
 .enquiry__intro{
   padding:clamp(2rem,4vw,3.4rem);
   background:
-    linear-gradient(160deg,rgba(18,49,39,.6),rgba(12,21,18,.9)),
+    linear-gradient(160deg,var(--veil-1),var(--veil-2)),
     url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=900&q=70') center/cover;
 }
 .enquiry__intro p{color:var(--cream-dim);margin-bottom:1.8rem}
@@ -529,7 +541,7 @@ section{position:relative}
   border:1px solid var(--line);color:var(--gold-lite);width:40px;height:40px;border-radius:50%;
   font-size:1.5rem;cursor:pointer;line-height:1;transition:.3s;
 }
-.modal__x:hover{background:var(--gold);color:var(--ink)}
+.modal__x:hover{background:var(--gold);color:var(--on-gold)}
 .modal__hero{aspect-ratio:16/9;overflow:hidden}
 .modal__hero img{width:100%;height:100%;object-fit:cover}
 .modal__inner{padding:2rem clamp(1.4rem,3vw,2.6rem) 2.4rem}
@@ -564,7 +576,7 @@ section{position:relative}
   body{font-size:17px}
   .nav__links{
     position:fixed;top:0;right:0;height:100vh;width:78%;max-width:330px;
-    background:rgba(9,17,13,.97);backdrop-filter:blur(16px);
+    background:var(--glass-solid);backdrop-filter:blur(16px);
     flex-direction:column;justify-content:center;gap:2rem;
     transform:translateX(100%);transition:.5s cubic-bezier(.22,1,.36,1);
     border-left:1px solid var(--line);z-index:58;
